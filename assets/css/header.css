@@ -2,13 +2,13 @@ header {
   position: fixed;
   top: 0; left: 0; right: 0;
   height: var(--header-height);
-  background: #34f81e;
+  background: #ea0f0f;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   z-index: 1000;
-  border-bottom: 1px solid rgba(16, 203, 32, 0.74);
+  border-bottom: 1px solid #ea0f0f(16, 203, 32, 0.74);
 }
 
 header .logo {
