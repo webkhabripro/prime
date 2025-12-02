@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /proxy/video/
+Allow: /
+Sitemap: https://swogex.com/sitemap.xml
