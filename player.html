@@ -4,13 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Player - demo</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png">
+
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/header.css">
   <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/home.css">
+
   <style>
-    /* Player page specific styles */
+    /* Player Hero */
     .player-hero {
       max-width: 900px;
       margin: 18px auto;
@@ -25,10 +27,11 @@
       overflow: hidden;
       border: 1px solid red;
     }
-    .player-thumb img, .player-thumb video {
+    .player-thumb img {
       width: 100%;
       display: block;
     }
+
     .player-play-btn {
       position: absolute;
       top: 50%;
@@ -60,8 +63,6 @@
       justify-content: center;
       background: rgba(0,0,0,0.6);
       color: #fff;
-      font-size: 14px;
-      gap: 10px;
       flex-direction: column;
     }
     .spinner {
@@ -72,8 +73,9 @@
       border-top-color: white;
       animation: spin 1s linear infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg) } }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* Related Section */
     .related-section {
       background: #000;
       padding: 12px;
@@ -84,28 +86,54 @@
     .related-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
       margin-top: 12px;
     }
+
+    /* ---- FIXED RELATED ITEM LAYOUT ---- */
     .related-item {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      cursor: pointer;
-      background: rgba(255,255,255,0.03);
-      padding: 6px;
+      background: rgba(255,255,255,0.04);
       border-radius: 6px;
       overflow: hidden;
+      cursor: pointer;
+      padding: 0;
     }
-    .related-item img { width: 96px; height: 64px; object-fit: cover; border-radius: 4px; }
-    .related-item .r-title { font-size: 13px; color: #eee; }
+    .related-item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+    .related-item .r-title {
+      font-size: 13px;
+      color: #fff;
+      padding: 6px 6px 10px;
+      text-align: center;
+    }
 
-    /* keep bottom-nav visible like original */
-    nav.bottom-nav { position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%); z-index: 1200; }
+    /* Footer fix: full width */
+    nav.bottom-nav {
+      width: 100% !important;
+      left: 0 !important;
+      transform: none !important;
+    }
   </style>
 </head>
+
 <body class="home-page">
 
+<!-- FIXED: Side Menu added -->
+<div id="sideMenu" class="side-menu">
+  <a href="/">🏠 Home</a>
+  <a href="/deshi-sex-video.html">🔥 Deshi Video</a>
+  <a href="/bhabhi.html">💃 Bhabhi Video</a>
+  <a href="/school.html">📚 School Girl</a>
+  <a href="/reels.html">▶ Reels</a>
+  <a href="/indian-video.html">🇮🇳 Indian Video</a>
+  <a href="/desi-girl-reels.html">💃 Desi Girl Reels</a>
+</div>
+
+<!-- HEADER -->
 <header>
   <img src="assets/img/logo.png" class="logo" alt="Site Logo">
   <div class="menu-icon" onclick="toggleMenu()">
@@ -118,22 +146,20 @@
     <h2 id="videoTitle" class="styled-h2">Loading...</h2>
 
     <div class="player-thumb" id="playerThumb">
-      <img id="thumbImg" src="assets/img/deshi1.jpg" alt="thumb">
-      <div class="player-play-btn" id="playBtn" title="Play"></div>
+      <img id="thumbImg" src="assets/img/deshi1.jpg">
+      <div class="player-play-btn" id="playBtn"></div>
     </div>
 
-    <p id="videoDesc" class="red-box" style="margin-top:12px;">&nbsp;</p>
+    <p id="videoDesc" class="red-box" style="margin-top:12px;"></p>
   </div>
 
   <div class="related-section">
-    <h2 class="styled-h2" style="background:#000; color:#fff;">Related Posts</h2>
-    <div class="related-grid" id="relatedGrid">
-      <!-- filled by JS -->
-    </div>
+    <h2 class="styled-h2" style="background:#000;color:#fff;">Related Posts</h2>
+    <div class="related-grid" id="relatedGrid"></div>
   </div>
-
 </main>
 
+<!-- FOOTER -->
 <nav class="bottom-nav">
   <button onclick="window.location.href='/'"><img src="assets/icons/home.png"><span>Home</span></button>
   <button><img src="assets/icons/search.png"><span>Search</span></button>
@@ -143,13 +169,8 @@
 </nav>
 
 <script>
-  // helper: parse query params
-  function qp(name, defaultVal) {
-    const url = new URL(window.location.href);
-    return url.searchParams.get(name) || defaultVal;
-  }
+  function qp(n,val){ const u=new URL(location.href); return u.searchParams.get(n)||val; }
 
-  // sample related posts array (uses same images as your site)
   const POSTS = [
     {img:'assets/img/deshi1.jpg', title:'Trending Reels Collection'},
     {img:'assets/img/deshi2.jpg', title:'Latest Entertainment Clips'},
@@ -158,80 +179,65 @@
     {img:'assets/img/deshi5.jpg', title:'Video HD'}
   ];
 
-  function shuffle(a){
-    return a.map(v=>({v, r:Math.random()})).sort((a,b)=>a.r-b.r).map(x=>x.v);
-  }
+  function shuffle(a){ return a.map(v=>({v,r:Math.random()})).sort((a,b)=>a.r-b.r).map(x=>x.v); }
 
-  // populate hero from params
-  const title = decodeURIComponent(qp('title','Untitled'));
-  const img = decodeURIComponent(qp('img','assets/img/deshi1.jpg'));
-  const desc = decodeURIComponent(qp('desc','Catch the hottest viral reels trending right now — updated daily.'));
+  /* Load main */
+  document.getElementById('videoTitle').textContent = qp('title','Untitled');
+  document.getElementById('thumbImg').src = qp('img','assets/img/deshi1.jpg');
+  document.getElementById('videoDesc').textContent = qp('desc','Catch the hottest viral reels trending right now — updated daily.');
 
-  document.getElementById('videoTitle').textContent = title;
-  document.getElementById('thumbImg').src = img;
-  document.getElementById('videoDesc').textContent = desc;
-
-  // play button logic: show buffering for 1.8s then "play"
+  /* Play logic */
   const playBtn = document.getElementById('playBtn');
   const playerThumb = document.getElementById('playerThumb');
   let isPlaying = false;
 
-  function showBuffering() {
+  playBtn.onclick = ()=>{
+    if(isPlaying) return;
+
     const overlay = document.createElement('div');
     overlay.className = 'buffering-overlay';
     overlay.innerHTML = '<div class="spinner"></div><div>Buffering...</div>';
     playerThumb.appendChild(overlay);
-    return overlay;
-  }
 
-  function afterPlayState() {
-    // remove buffering and show a simple playing state (simulated)
-    const overlay = playerThumb.querySelector('.buffering-overlay');
-    if (overlay) overlay.remove();
-
-    // replace image with a simulated "video" element area
-    const existingVideo = playerThumb.querySelector('video');
-    if (!existingVideo) {
-      const videoEl = document.createElement('div');
-      videoEl.style.padding = '60px 20px';
-      videoEl.style.textAlign = 'center';
-      videoEl.style.fontSize = '18px';
-      videoEl.style.color = '#fff';
-      videoEl.textContent = 'Playing — simulated video';
-      // hide play button
+    setTimeout(()=>{
+      overlay.remove();
       playBtn.style.display = 'none';
-      playerThumb.appendChild(videoEl);
+
+      const v = document.createElement('div');
+      v.style.padding = '60px 20px';
+      v.style.textAlign = 'center';
+      v.style.color = '#fff';
+      v.textContent = 'Playing — simulated video';
+      playerThumb.appendChild(v);
+
       isPlaying = true;
-    }
-  }
+    },1800);
+  };
 
-  playBtn.addEventListener('click', ()=>{
-    if (isPlaying) return;
-    const buf = showBuffering();
-    setTimeout(afterPlayState, 1800);
-  });
-
-  // build related grid (random order every load)
-  const relatedGrid = document.getElementById('relatedGrid');
-  const picks = shuffle(POSTS).slice(0,6);
-  picks.forEach(p=>{
+  /* Related */
+  const grid = document.getElementById('relatedGrid');
+  shuffle(POSTS).slice(0,6).forEach(p=>{
     const item = document.createElement('div');
-    item.className = 'related-item';
-    item.innerHTML = `\n      <img src="${p.img}" alt="thumb">\n      <div><div class="r-title">${p.title}</div></div>\n    `;
-    item.addEventListener('click', ()=>{
-      // navigate to player.html with params — this page itself — so reload with new params
-      const params = new URLSearchParams({ img: p.img, title: p.title, desc: 'Catch the hottest viral reels trending right now — updated daily.' });
-      window.location.href = 'player.html?' + params.toString();
-    });
-    relatedGrid.appendChild(item);
+    item.className='related-item';
+    item.innerHTML = `
+      <img src="${p.img}">
+      <div class="r-title">${p.title}</div>
+    `;
+    item.onclick = ()=>{
+      const q = new URLSearchParams({
+        img:p.img,
+        title:p.title,
+        desc:'Catch the hottest viral reels trending right now — updated daily.'
+      });
+      location.href='player.html?'+q.toString();
+    };
+    grid.appendChild(item);
   });
 
-  // toggle menu function (same as original)
+  /* Menu */
   function toggleMenu(){
-    document.getElementById('sideMenu')?.classList.toggle('active');
+    document.getElementById('sideMenu').classList.toggle('active');
   }
-
-  // expose toggleMenu to global so header menu icon works
   window.toggleMenu = toggleMenu;
 </script>
 
