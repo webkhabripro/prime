@@ -1,126 +1,93 @@
-<!doctype html>
-<html lang="hi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Demo — Auto Tag System</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home – Viral Indian Reels</title>
 
+  <!-- Existing CSS Files -->
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+
+  <!-- TAG STYLES (Put inside global.css also if needed) -->
   <style>
-    body{font-family:Arial;background:#f5f6f8;margin:0;padding:18px}
-    .container{max-width:980px;margin:auto;background:#fff;padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-    .tag-bar{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}
-    .tag-box{padding:8px 12px;border-radius:20px;background:#e53935;color:#fff;text-decoration:none;font-size:14px}
-    .tag-box.small{background:#333;font-size:13px}
-    .home-posts{display:flex;flex-direction:column;gap:18px}
-    .post{border:1px solid #e53935;padding:14px;border-radius:8px;background:#fff}
-    .styled-h2{display:inline-block;background:#e53935;color:#fff;padding:8px 12px;border-radius:6px;font-size:18px}
-    .red-box{border:1px solid red;padding:10px;border-radius:6px;background:rgba(255,0,0,0.08)}
-    .img-box{margin-top:12px;border:1px solid red;border-radius:6px;overflow:hidden;height:300px;position:relative}
-    .img-box img{width:100%;height:100%;object-fit:cover}
-    .play-btn{position:absolute;width:70px;height:70px;background:rgba(255,255,255,0.5);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
-    .play-btn::before{content:"";width:0;height:0;border-left:20px solid red;border-top:12px solid transparent;border-bottom:12px solid transparent;position:absolute;left:28px;top:23px}
-    .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
-    .post-tag{padding:6px 10px;background:#fff;border:1px solid #ccc;border-radius:6px;color:#e53935;text-decoration:none;font-size:13px;cursor:pointer}
+    .tag {
+      display: inline-block;
+      background: #e60000;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin: 6px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .tag:hover { background: #b30000; cursor:pointer; }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <h2>🔥 Auto Tag Generator Demo</h2>
-    <p>नीचे tags automatically generate होते हैं और क्लिक पर <b>tag.html</b> खुलता है।</p>
+<header>
+  <img src="assets/img/logo.png" class="logo" alt="Logo">
+</header>
 
-    <!-- TAG BAR -->
-    <div id="tagBar" class="tag-bar"></div>
 
-    <!-- POSTS -->
-    <section id="postsContainer" class="home-posts">
+<!-- TAGS AUTO AREA -->
+<section style="padding:15px;">
+  <h2 style="color:white;">🔥 Popular Tags</h2>
+  <div id="tagList"></div>
+</section>
 
-      <article class="post" data-tags="trending,reels,viral">
-        <h2 class="styled-h2">Trending Reels</h2>
-        <div class="red-box">Top trending reels.</div>
-        <div class="img-box">
-          <img src="https://via.placeholder.com/1200x680?text=1">
-          <div class="play-btn"></div>
-        </div>
-        <div class="meta">
-          <span class="post-tag" data-tag="trending">#trending</span>
-          <span class="post-tag" data-tag="reels">#reels</span>
-          <span class="post-tag" data-tag="viral">#viral</span>
-        </div>
-      </article>
 
-      <article class="post" data-tags="music,dance,viral">
-        <h2 class="styled-h2">Music Dance</h2>
-        <div class="red-box">Music & dance shorts.</div>
-        <div class="img-box">
-          <img src="https://via.placeholder.com/1200x680?text=2">
-          <div class="play-btn"></div>
-        </div>
-        <div class="meta">
-          <span class="post-tag" data-tag="music">#music</span>
-          <span class="post-tag" data-tag="dance">#dance</span>
-          <span class="post-tag" data-tag="viral">#viral</span>
-        </div>
-      </article>
+<!-- POSTS LIST -->
+<section id="posts">
 
-      <article class="post" data-tags="romantic,desi,festival">
-        <h2 class="styled-h2">Romantic Desi</h2>
-        <div class="red-box">Romantic festival clips.</div>
-        <div class="img-box">
-          <img src="https://via.placeholder.com/1200x680?text=3">
-          <div class="play-btn"></div>
-        </div>
-        <div class="meta">
-          <span class="post-tag" data-tag="romantic">#romantic</span>
-          <span class="post-tag" data-tag="desi">#desi</span>
-          <span class="post-tag" data-tag="festival">#festival</span>
-        </div>
-      </article>
-
-    </section>
-
+  <div class="post" data-tags="bhabhi, indian, reels">
+    <h2>Bhabhi Hot Reels</h2>
+    <p>Latest trending bhabhi clips.</p>
   </div>
 
-  <!-- TAG GENERATOR SCRIPT -->
-  <script>
-    const tagBar = document.getElementById('tagBar');
-    const posts = document.querySelectorAll('.post');
+  <div class="post" data-tags="desi, indian, village">
+    <h2>Desi Village Reels</h2>
+    <p>Best Indian village girl videos.</p>
+  </div>
 
-    const tagCount = {};
+  <div class="post" data-tags="schoolgirl, cute, indian">
+    <h2>School Girl Cute Moments</h2>
+    <p>Cute funny moments trending now.</p>
+  </div>
 
-    posts.forEach(post => {
-      const tags = post.dataset.tags.split(',');
-      tags.forEach(t => {
-        t = t.trim().toLowerCase();
-        tagCount[t] = (tagCount[t] || 0) + 1;
-      });
-    });
+</section>
 
-    // Show All tags
-    let all = document.createElement("a");
-    all.className = "tag-box small";
-    all.href = "tag.html?tag=all";
-    all.innerText = "Show All";
-    tagBar.appendChild(all);
 
-    // create tag links
-    Object.keys(tagCount).forEach(tag => {
-      let a = document.createElement("a");
-      a.className = "tag-box";
-      a.href = "tag.html?tag=" + encodeURIComponent(tag);
-      a.innerHTML = ${tag} <span>(${tagCount[tag]})</span>;
-      tagBar.appendChild(a);
-    });
+<script>
+// Collect tags from posts
+const posts = document.querySelectorAll('.post');
+let counts = {}; 
 
-    // inside post tag click
-    document.querySelectorAll('.post-tag').forEach(tag => {
-      tag.addEventListener("click", function(){
-        const t = this.dataset.tag;
-        window.location.href = "tag.html?tag=" + encodeURIComponent(t);
-      });
-    });
-  </script>
+posts.forEach(p => {
+  const t = p.dataset.tags.split(",");
+  t.forEach(tag => {
+    tag = tag.trim();
+    if (!counts[tag]) counts[tag] = 0;
+    counts[tag]++;
+  });
+});
+
+// Show tags on index
+const tagList = document.getElementById("tagList");
+
+Object.keys(counts).forEach(t => {
+  let a = document.createElement("a");
+  a.className = "tag";
+  a.href = "tag.html?tag=" + encodeURIComponent(t);
+  a.innerHTML = ${t} <span style="opacity:.8;font-size:12px;">(${counts[t]})</span>;
+  tagList.appendChild(a);
+});
+
+</script>
 
 </body>
 </html>

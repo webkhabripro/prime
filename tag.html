@@ -1,76 +1,58 @@
-<!doctype html>
-<html lang="hi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Tag Results</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tag Results</title>
 
-<style>
-  body{font-family:Arial;background:#fafafa;margin:0;padding:20px}
-  .container{max-width:900px;margin:auto;background:#fff;padding:20px;border-radius:8px}
-  .post{border:1px solid #e53935;padding:12px;border-radius:8px;margin:12px 0}
-  .styled-h2{display:inline-block;background:#e53935;color:#fff;padding:8px 12px;border-radius:6px}
-  .red-box{border:1px solid red;padding:10px;border-radius:6px;background:rgba(255,0,0,0.08)}
-  .img-box{margin-top:10px;border:1px solid red;height:250px;border-radius:6px;overflow:hidden}
-  .img-box img{width:100%;height:100%;object-fit:cover}
-</style>
+  <link rel="stylesheet" href="assets/css/global.css">
+
+  <style>
+    .tag-title {
+      color: white;
+      font-size: 22px;
+      padding: 15px;
+      text-align:center;
+    }
+    .post {
+      background:white;
+      padding:15px;
+      margin:15px;
+      border-radius:8px;
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
 
-<h2 id="tagTitle">Results</h2>
-<p>Below are the posts related to selected tag:</p>
+<h2 class="tag-title" id="tagTitle"></h2>
 
-<section id="resultContainer"></section>
-
-</div>
+<section id="resultArea"></section>
 
 <script>
-// get ?tag=keyword
-const urlParams = new URLSearchParams(window.location.search);
-const tag = urlParams.get("tag")?.toLowerCase() || "all";
+// Read tag from URL
+const urlParams = new URLSearchParams(location.search);
+const tag = urlParams.get("tag");
+document.getElementById("tagTitle").textContent = "Results for: " + tag;
 
-document.getElementById("tagTitle").innerText = "Showing results for: " + tag;
-
-// post data (same as index.html)
+// SAMPLE POSTS (Same as index)
 const posts = [
-  {
-    title:"Trending Reels",
-    desc:"Top trending reels.",
-    img:"https://via.placeholder.com/1200x680?text=1",
-    tags:["trending","reels","viral"]
-  },
-  {
-    title:"Music Dance",
-    desc:"Music & dance shorts.",
-    img:"https://via.placeholder.com/1200x680?text=2",
-    tags:["music","dance","viral"]
-  },
-  {
-    title:"Romantic Desi",
-    desc:"Romantic festival clips.",
-    img:"https://via.placeholder.com/1200x680?text=3",
-    tags:["romantic","desi","festival"]
-  }
+  { title:"Bhabhi Hot Reels", desc:"Latest trending bhabhi clips.", tags:"bhabhi, indian, reels" },
+  { title:"Desi Village Reels", desc:"Best Indian village girl videos.", tags:"desi, indian, village" },
+  { title:"School Girl Cute Moments", desc:"Cute funny moments trending now.", tags:"schoolgirl, cute, indian" },
 ];
 
-const result = document.getElementById("resultContainer");
+// Filter & show
+const result = document.getElementById("resultArea");
 
-// filter logic
-posts.forEach(p=>{
-  if(tag==="all" || p.tags.includes(tag)){
-    let box = document.createElement("div");
-    box.className = "post";
-    box.innerHTML = `
-      <h2 class="styled-h2">${p.title}</h2>
-      <div class="red-box">${p.desc}</div>
-      <div class="img-box"><img src="${p.img}"></div>
-    `;
-    result.appendChild(box);
+posts.forEach(p => {
+  if (p.tags.includes(tag)) {
+    let div = document.createElement("div");
+    div.className = "post";
+    div.innerHTML = <h3>${p.title}</h3><p>${p.desc}</p>;
+    result.appendChild(div);
   }
 });
-
 </script>
 
 </body>
