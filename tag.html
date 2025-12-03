@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Tag Results — Demo</title>
+  <meta name="description" content="Tag results page — shows posts matching selected tag."/>
+  <style>
+    body{font-family:Arial, Helvetica, sans-serif;background:#f5f6f8;margin:0;padding:18px}
+    .container{max-width:980px;margin:0 auto;background:#fff;padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+    .back{margin-left:auto}
+    .results-header{font-weight:700;margin:10px 0}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:8px}
+    .card{border:1px solid #e0e0e0;padding:12px;border-radius:8px;background:#fff}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:6px}
+    .tag-badge{display:inline-block;padding:6px 10px;border-radius:14px;background:#e53935;color:#fff;font-size:13px;text-decoration:none;margin-right:6px}
+    .no-results{padding:20px;text-align:center;color:#666}
+    a.btn{display:inline-block;padding:8px 12px;background:#e53935;color:#fff;border-radius:6px;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h2 style="margin:0">Tag Results</h2>
+      <a href="index.html" class="back btn">← Back</a>
+    </header>
+
+    <div id="resultsHeader" class="results-header"></div>
+
+    <div id="cards" class="cards"></div>
+  </div>
+
+  <script>
+    /*
+      tag.html script:
+      - Reads ?tag=keyword
+      - Loads a local posts array (same structure as index) OR
+        (In production you could fetch JSON from server)
+      - Filters posts where tags include keyword (or shows all for 'all')
+      - Renders cards
+    */
+
+    const posts = [
+      {
+        id:1, title:'🔥 Trending Reels Collection', desc:'Top trending clips and short videos from creators across India.', img:'https://via.placeholder.com/1200x680.png?text=Trending+Reel+1', tags:['trending','reels','viral']
+      },
+      {
+        id:2, title:'🎵 Music & Dance Short', desc:'Energetic dance shorts and music challenges.', img:'https://via.placeholder.com/1200x680.png?text=Music+Dance', tags:['music','dance','viral']
+      },
+      {
+        id:3, title:'💖 Romantic Desi Clips', desc:'Sweet romantic moments and festival-themed reels.', img:'https://via.placeholder.com/1200x680.png?text=Romantic+Desi', tags:['romantic','desi','festival']
+      },
+      {
+        id:4, title:'🏞️ Village Travel Shorts', desc:'Scenic village travel clips and local travel stories.', img:'https://via.placeholder.com/1200x680.png?text=Village+Travel', tags:['village','travel','desi']
+      },
+      {
+        id:5, title:'🎭 School Comedy Skits', desc:'Short comedic skits inspired by school life.', img:'https://via.placeholder.com/1200x680.png?text=School+Comedy', tags:['school','comedy','viral']
+      }
+    ];
+
+    function getQueryParam(name){
+      const params = new URLSearchParams(location.search);
+      return params.get(name);
+    }
+
+    function renderCards(filtered, tag){
+      const cards = document.getElementById('cards');
+      const header = document.getElementById('resultsHeader');
+      cards.innerHTML = '';
+      if(!filtered.length){
+        header.textContent = No results for "${tag}";
+        cards.innerHTML = '<div class="no-results">कोई परिणाम नहीं मिला। <a href="index.html" class="btn">Back to Home</a></div>';
+        return;
+      }
+      header.textContent = Showing ${filtered.length} result(s) for "${tag}";
+      filtered.forEach(p=>{
+        const div = document.createElement('div');
+        div.className='card';
+        div.innerHTML = `
+          <img src="${p.img}" alt="${p.title}">
+          <h3 style="margin:10px 0 6px 0">${p.title}</h3>
+          <p style="margin:0 0 10px 0;color:#444">${p.desc}</p>
+          <div style="margin-bottom:8px">${p.tags.map(t=><span class="tag-badge">${t}</span>).join(' ')}</div>
+          <a href="index.html#post-${p.id}" class="btn">Open Post</a>
+        `;
+        cards.appendChild(div);
+      });
+    }
+
+    (function(){
+      const tag = (getQueryParam('tag') || '').toLowerCase().trim();
+      if(!tag){
+        // nothing specified: redirect to index
+        location.href = 'index.html';
+        return;
+      }
+      if(tag === 'all'){
+        renderCards(posts, 'all');
+        return;
+      }
+      const filtered = posts.filter(p => p.tags.map(t=>t.toLowerCase()).includes(tag));
+      renderCards(filtered, tag);
+    })();
+  </script>
+</body>
+</html>
