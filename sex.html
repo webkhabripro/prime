@@ -125,29 +125,42 @@
       const tagBar = document.getElementById('tagBar');
       const posts = Array.from(document.querySelectorAll('.post'));
       const counts = {};
+
       posts.forEach(p => {
         const raw = p.dataset.tags || '';
-        raw.split(',').map(t=>t.trim()).filter(Boolean).forEach(t=>{
-          const key = t.toLowerCase();
-          counts[key] = (counts[key]||0)+1;
-        });
+        raw.split(',')
+           .map(t => t.trim())
+           .filter(Boolean)
+           .forEach(t => {
+             const key = t.toLowerCase();
+             counts[key] = (counts[key] || 0) + 1;
+           });
       });
+
       // sort by count desc
-      const tagList = Object.keys(counts).sort((a,b)=>counts[b]-counts[a] || a.localeCompare(b));
+      const tagList = Object.keys(counts)
+                            .sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
+
       // "Show All" link
       const all = document.createElement('a');
-      all.className='tag-box small';
-      all.href='tag.html?tag=all';
-      all.textContent='Show All';
+      all.className = 'tag-box small';
+      all.href = 'tag.html?tag=all';
+      all.textContent = 'Show All';
       tagBar.appendChild(all);
-      tagList.forEach(t=>{
+
+      // create clickable tag list
+      tagList.forEach(t => {
         const a = document.createElement('a');
-        a.className='tag-box';
+        a.className = 'tag-box';
         a.href = 'tag.html?tag=' + encodeURIComponent(t);
         a.innerHTML = ${t} <span style="opacity:.8;font-size:12px;margin-left:8px;">(${counts[t]})</span>;
         tagBar.appendChild(a);
       });
     })();
-  </script>
-</body>
-</html>
+</script>
+
+<script>
+function openTag(tagName) {
+  window.location.href = "tag.html?tag=" + encodeURIComponent(tagName);
+}
+</script>
