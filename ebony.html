@@ -378,19 +378,31 @@
 <style>
 .extra-paragraph {
   display: flex;
-  gap: 10px; /* spacing between hashtags */
+  flex-wrap: wrap; /* allows hashtags to wrap to next line */
+  gap: 10px;        /* space between hashtags */
   padding: 10px;
+  justify-content: flex-start; /* align hashtags to start */
 }
 
 .hashtag {
-  color: red; /* text color */
+  color: red; 
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px; 
   padding: 5px 12px;
-  background: white; /* background color */
+  background: white; 
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* 3D effect */
-  transform: perspective(100px) rotateX(5deg) rotateY(-5deg); /* subtle 3D tilt */
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5); 
+  display: inline-block; /* ensures proper wrapping */
+  margin-bottom: 5px; /* extra spacing between rows */
+  transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+}
+
+/* Mobile Specific Adjustments */
+@media (max-width: 768px) {
+  .hashtag {
+    font-size: 14px;  /* smaller font for mobile */
+    padding: 4px 8px;
+  }
 }
 </style>
 
