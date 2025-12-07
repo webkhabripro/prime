@@ -1,16 +1,19 @@
 <!doctype html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 <!-- SEO -->
+
 <title>Videos Pri – Hindi Content</title>
 <meta name="description" content="keyword,." />
 <meta name="robots" content="index, follow" />
 <meta name="keywords" content="keyword," />
 
 <!-- Favicon & CSS -->
+
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png">
 <link rel="stylesheet" href="assets/css/global.css">
 <link rel="stylesheet" href="assets/css/header.css">
@@ -21,165 +24,40 @@
 
 <style>
 /* H2 Styling */
-.styled-h2 {
-  background: red;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-/* Paragraph with Red Thin Border */
-.red-box {
-  border: 1px solid red;
-  padding: 12px;
-  border-radius: 6px;
-  margin-top: 10px;
-  font-size: 15px;
-  color: #eee;
-  background: rgba(0,0,0,0.25);
-}
-
-/* Image Box with Play Button */
-.img-box {
-  position: relative;
-  border: 1px solid red;
-  border-radius: 6px;
-  overflow: hidden;
-  margin: 12px 0;
-}
-.img-box img {
-  width: 100%;
-  display: block;
-}
-.play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 55px;
-  height: 55px;
-  background: rgba(255,255,255,0.25);
-  border-radius: 50%;
-  backdrop-filter: blur(2px);
-}
-.play-btn::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 52%;
-  transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
-  border-left: 16px solid white;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-}
-
-/* Hashtags styling */
-.extra-paragraph {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px;
-  justify-content: flex-start;
-}
-.hashtag {
-  color: red;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 5px 12px;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-  display: inline-block;
-  margin-bottom: 5px;
-  text-decoration: none;
-  transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
-}
-@media (max-width:768px){
-  .hashtag {
-    font-size:14px;
-    padding:4px 8px;
-  }
-}
-
-/* Ad Slot */
-.ad-box {
-  width:100%;
-  text-align:center;
-  background:#f9f9f9;
-  margin:10px 0;
-  border-radius:6px;
-  padding:10px;
-}
-
-/* Bottom Navigation */
-.bottom-nav {
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-  display:flex;
-  justify-content:space-around;
-  background:#111;
-  border-top:2px solid red;
-  z-index:10;
-}
-.bottom-nav button {
-  background:none;
-  border:none;
-  color:#fff;
-  flex:1;
-  text-align:center;
-  padding:8px 0;
-}
-.bottom-nav button img {
-  width:25px;
-  height:25px;
-}
-.bottom-nav button span {
-  display:block;
-  font-size:12px;
-}
-
-main {
-  padding-bottom: 80px !important;
-}
-
-.post-tags {
-  display: none;
-}
-
-
+.styled-h2 { background: red; color:#fff; padding:8px 12px; border-radius:6px; font-size:20px; margin-bottom:10px;}
+.red-box {border:1px solid red; padding:12px; border-radius:6px; margin-top:10px; font-size:15px; color:#eee; background:rgba(0,0,0,0.25);}
+.img-box {position:relative; border:1px solid red; border-radius:6px; overflow:hidden; margin:12px 0;}
+.img-box img {width:100%; display:block;}
+.play-btn {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:55px; height:55px; background: rgba(255,255,255,0.25); border-radius:50%; backdrop-filter:blur(2px);}
+.play-btn::after {content:""; position:absolute; top:50%; left:52%; transform:translate(-50%,-50%); width:0; height:0; border-left:16px solid white; border-top:10px solid transparent; border-bottom:10px solid transparent;}
+.extra-paragraph {display:flex; flex-wrap:wrap; gap:10px; padding:10px; justify-content:flex-start;}
+.hashtag {color:red; font-weight:bold; font-size:16px; padding:5px 12px; background:white; border-radius:5px; box-shadow:2px 2px 5px rgba(0,0,0,0.5); display:inline-block; margin-bottom:5px; text-decoration:none; transform: perspective(100px) rotateX(5deg) rotateY(-5deg);}
+@media (max-width:768px){.hashtag{font-size:14px; padding:4px 8px;}}
+.ad-box {width:100%; text-align:center; background:#f9f9f9; margin:10px 0; border-radius:6px; padding:10px;}
+.bottom-nav {position:fixed; bottom:0; left:0; width:100%; display:flex; justify-content:space-around; background:#111; border-top:2px solid red; z-index:10;}
+.bottom-nav button {background:none; border:none; color:#fff; flex:1; text-align:center; padding:8px 0;}
+.bottom-nav button img {width:25px; height:25px;}
+.bottom-nav button span {display:block; font-size:12px;}
+main {padding-bottom:80px !important;}
+.post-tags {display:none;}
 </style>
+
 </head>
 
 <body class="home-page">
-
-<!-- Header -->
 <header>
   <img src="assets/img/logo.png" class="logo" alt="Site Logo">
-  <div class="menu-icon" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="menu-icon" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </header>
 
-<!-- Info Text -->
 <p style="padding:12px 20px;color:red;font-size:14px;text-align:center;background:white;border:2px solid red;border-radius:8px;margin:12px 20px;">
-  Enjoy the hottest <strong>Indian Reels</strong>, <strong>Trending Short Videos</strong> & <strong>Daily Viral Clips</strong> only on our site.
-  Explore our collection of curated videos and enjoy updates daily.
+Enjoy the hottest <strong>Indian Reels</strong>, <strong>Trending Short Videos</strong> & <strong>Daily Viral Clips</strong> only on our site. Explore our collection of curated videos and enjoy updates daily.
 </p>
 
-<!-- ======= TOP AD SLOT ======= -->
 <div class="ad-box">
-  <!-- Paste your Adsteraa / Adsense code here -->
-  <script type="text/javascript" src="https://your-ad-code.js"></script>
+<script type="text/javascript" src="https://your-ad-code.js"></script>
 </div>
-<!-- =========================== -->
 
-<!-- Side Menu -->
 <div id="sideMenu" class="side-menu">
   <a href="/">🏠 Home</a>
   <a href="/hindi.html">🔥 Deshi Video</a>
@@ -190,50 +68,46 @@ main {
   <a href="/desi-girl-reels.html">💃 Desi Girl Reels</a>
 </div>
 
-<!-- Main Content -->
 <main>
 <section class="home-posts">
 
-  <!-- POST EXAMPLES -->
-  <article class="post">
-    <h2 class="styled-h2">🔥 Trending Reels Collection</h2>
-    <div class="red-box">Watch top trending clips and short videos from creators across India.</div>
-    <a href="player.html?img=assets/img/deshi1.jpg&title=Trending Reels Collection&desc=Watch top trending clips and short videos from creators across India." class="img-box">
-      <img src="assets/img/deshi1.jpg" alt="Post Image">
-      <div class="play-btn"></div>
-      <div class="post-tags">
+<article class="post">
+<h2 class="styled-h2">🔥 Trending Reels Collection</h2>
+<div class="red-box">Watch top trending clips and short videos from creators across India.</div>
+<a href="player.html?img=assets/img/deshi1.jpg&title=Trending Reels Collection&desc=Watch top trending clips and short videos from creators across India.&tags=taand,vairal,indian,reels,video" class="img-box">
+<img src="assets/img/deshi1.jpg" alt="Post Image">
+<div class="play-btn"></div>
+<div class="post-tags">
   <a class="hashtag" href="tag.html?tag=trand">#taand</a>
   <a class="hashtag" href="tag.html?tag=vairal">#vairal</a>
   <a class="hashtag" href="tag.html?tag=indian">#indian</a>
   <a class="hashtag" href="tag.html?tag=reels">#reels</a>
   <a class="hashtag" href="tag.html?tag=video">#video</a>
 </div>
-    </a>
-  </article>
+</a>
+</article>
 
-  <article class="post">
-    <h2 class="styled-h2">💃 Latest Entertainment Clips</h2>
-    <div class="red-box">Enjoy fun and trending entertainment moments from around the country.</div>
-    <a href="player.html?img=assets/img/deshi2.jpg&title=Entertainment Clips&desc=Enjoy fun and trending entertainment moments from around the country." class="img-box">
-      <img src="assets/img/deshi2.jpg" alt="Post Image">
-      <div class="play-btn"></div>
-    </a>
-  </article>
+<article class="post">
+<h2 class="styled-h2">💃 Latest Entertainment Clips</h2>
+<div class="red-box">Enjoy fun and trending entertainment moments from around the country.</div>
+<a href="player.html?img=assets/img/deshi2.jpg&title=Entertainment Clips&desc=Enjoy fun and trending entertainment moments from around the country." class="img-box">
+<img src="assets/img/deshi2.jpg" alt="Post Image">
+<div class="play-btn"></div>
+</a>
+</article>
 
-  <article class="post">
-    <h2 class="styled-h2">🎬 Viral Indian Reels</h2>
-    <div class="red-box">Catch the hottest viral reels trending right now — updated daily.</div>
-    <a href="player.html?img=assets/img/deshi4.jpg&title=Viral Indian Reels&desc=Catch the hottest viral reels trending right now — updated daily." class="img-box">
-      <img src="assets/img/deshi4.jpg" alt="Post Image">
-      <div class="play-btn"></div>
-    </a>
-  </article>
+<article class="post">
+<h2 class="styled-h2">🎬 Viral Indian Reels</h2>
+<div class="red-box">Catch the hottest viral reels trending right now — updated daily.</div>
+<a href="player.html?img=assets/img/deshi4.jpg&title=Viral Indian Reels&desc=Catch the hottest viral reels trending right now — updated daily." class="img-box">
+<img src="assets/img/deshi4.jpg" alt="Post Image">
+<div class="play-btn"></div>
+</a>
+</article>
 
-  <!-- You can add more posts in same format -->
 </section>
 
-<!-- Tag Buttons -->
- <div class="red-box">POPULAR TAGS:-.</div>
+<div class="red-box">POPULAR TAGS:-.</div>
 <div class="extra-paragraph">
   <a class="hashtag" href="tag.html?tag=trand">#trand</a>
   <a class="hashtag" href="tag.html?tag=vairal">#vairal</a>
@@ -243,7 +117,6 @@ main {
 </div>
 </main>
 
-<!-- Bottom Navigation -->
 <nav class="bottom-nav">
   <button onclick="window.location.href='/'"><img src="assets/icons/home.png"><span>Home</span></button>
   <button><img src="assets/icons/search.png"><span>Search</span></button>
@@ -253,9 +126,7 @@ main {
 </nav>
 
 <script>
-function toggleMenu() {
-  document.getElementById('sideMenu').classList.toggle('active');
-}
+function toggleMenu(){ document.getElementById('sideMenu').classList.toggle('active'); }
 window.toggleMenu = toggleMenu;
 </script>
 
