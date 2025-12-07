@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tags Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{background:#000;color:#fff;font-family:Arial;}
+.tag-head{
+    background:red;color:#fff;padding:12px;margin:15px;
+    border-radius:6px;text-align:center;font-size:22px;
+}
+.grid-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:12px;
+    padding:15px;
+}
+.post-card{
+    border:1px solid red;border-radius:6px;overflow:hidden;
+    background:#111;
+}
+.post-card img{width:100%;display:block;}
+.post-card h3{
+    font-size:15px;background:red;color:#fff;margin:0;padding:8px;
+    text-align:center;
+}
+.pagination{text-align:center;margin:15px;}
+.pagination button{
+    padding:8px 15px;border:none;color:#fff;background:red;
+    border-radius:5px;margin:5px;font-size:14px;cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<h2 class="tag-head" id="tagTitle">Loading...</h2>
+<div id="results" class="grid-box">Searching posts...</div>
+<div class="pagination" id="pagi"></div>
+
+<script>
+const urlParams=new URLSearchParams(window.location.search);
+const tag=urlParams.get("tag").toLowerCase();
+document.getElementById("tagTitle").innerText="#"+tag+" Results";
+
+// Fetch main page & scrape posts
+fetch("index.html")
+.then(res=>res.text())
+.then(html=>{
+    let temp=document.createElement("div");
+    temp.innerHTML=html;
+
+    let posts=temp.querySelectorAll("article.post");
+    let data=[];
+
+    posts.forEach(p=>{
+        let text=p.innerText.toLowerCase();
+        if(text.includes(tag)){
+            let img=p.querySelector("img")?.src;
+            let title=p.querySelector("h2")?.innerText;
+            let link=p.querySelector("a")?.href;
+            if(img&&title&&link) data.push({img,title,link});
+        }
+    });
+
+    // === Pagination ===
+    let perPage=10,page=1,total=Math.ceil(data.length/perPage);
+
+    function render(){
+        let start=(page-1)*perPage;
+        let slice=data.slice(start,start+perPage);
+
+        document.getElementById("results").innerHTML=
+            slice.map(x=>`
+            <a href="${x.link}" class="post-card">
+                <img src="${x.img}" loading="lazy">
+                <h3>${x.title}</h3>
+            </a>`).join("") ||
+            "<p style='text-align:center;color:red'>No Posts Found</p>";
+
+        document.getElementById("pagi").innerHTML=
+            total>1?`
+            <button onclick="page=page>1?page-1:1;render()">Prev</button>
+            <span style='color:#fff'> Page ${page}/${total} </span>
+            <button onclick="page=page<total?page+1:total;render()">Next</button>`
+            :"";
+    }
+    render();
+});
+</script>
+
+</body>
+</html>
