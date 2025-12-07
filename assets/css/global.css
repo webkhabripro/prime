@@ -44,3 +44,15 @@ background: white;
 }
 .global-info-box::before { left:0; transform: translateY(-50%); }
 .global-info-box::after { right:0; transform: translateY(-50%); }
+
+/* Popular Tags Box */
+.popular-tags-box {
+background: white;
+color: red;
+font-weight: bold;
+padding: 10px 12px;
+border-radius: 6px;
+font-size: 16px;
+margin: 10px 0;
+text-align: center;
+}
