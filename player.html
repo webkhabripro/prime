@@ -5,14 +5,12 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Player - demo</title>
-
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png">
 <link rel="stylesheet" href="assets/css/global.css">
 <link rel="stylesheet" href="assets/css/header.css">
 <link rel="stylesheet" href="assets/css/footer.css">
 <link rel="stylesheet" href="assets/css/home.css">
 <link rel="stylesheet" href="assets/css/menu.css">
-
 <style>
 .player-hero { max-width:900px; margin:18px auto; background:#111; border-radius:8px; padding:12px; color:#fff;}
 .player-thumb { position:relative; border-radius:6px; overflow:hidden; border:1px solid red;}
@@ -21,7 +19,7 @@
 .player-play-btn::after {content:""; width:0;height:0; border-left:26px solid white; border-top:16px solid transparent; border-bottom:16px solid transparent; transform:translateX(6px);}
 .buffering-overlay {position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); color:#fff; flex-direction:column; z-index:999;}
 .spinner {width:48px; height:48px; border-radius:50%; border:4px solid rgba(255,255,255,0.15); border-top-color:white; animation:spin 1s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes spin{to{transform:rotate(360deg);} }
 .related-section {background:#000; padding:12px; margin-top:16px; border-radius:6px; color:#fff;}
 .related-grid {display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:12px;}
 .related-item {background:rgba(255,255,255,0.04); border-radius:6px; overflow:hidden; cursor:pointer; padding:0;}
@@ -32,11 +30,8 @@ nav.bottom-nav {width:100% !important; left:0 !important; transform:none !import
 .hashtag {color:red; font-weight:bold; font-size:16px; padding:5px 12px; background:white; border-radius:5px; box-shadow:2px 2px 5px rgba(0,0,0,0.5); display:inline-block; margin-bottom:5px; text-decoration:none; transform: perspective(100px) rotateX(5deg) rotateY(-5deg);}
 @media(max-width:768px){.hashtag{font-size:14px; padding:4px 8px;}}
 </style>
-
 </head>
-
 <body class="home-page">
-
 <div id="sideMenu" class="side-menu">
 <a href="/">🏠 Home</a>
 <a href="/deshi-sex-video.html">🔥 Deshi Video</a>
@@ -46,12 +41,10 @@ nav.bottom-nav {width:100% !important; left:0 !important; transform:none !import
 <a href="/indian-video.html">🇮🇳 Indian Video</a>
 <a href="/desi-girl-reels.html">💃 Desi Girl Reels</a>
 </div>
-
 <header>
 <img src="assets/img/logo.png" class="logo" alt="Site Logo">
 <div class="menu-icon" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </header>
-
 <main>
 <div class="player-hero" id="playerHero">
 <h2 id="videoTitle" class="styled-h2">Loading...</h2>
@@ -60,18 +53,13 @@ nav.bottom-nav {width:100% !important; left:0 !important; transform:none !import
 <div class="player-play-btn" id="playBtn"></div>
 </div>
 <p id="videoDesc" class="red-box" style="margin-top:12px;"></p>
-
-<!-- TAGS BOX -->
-
 <div id="videoTags" class="extra-paragraph" style="margin-top:10px;"></div>
 </div>
-
 <div class="related-section">
 <h2 class="styled-h2" style="background:#000;color:#fff;">Related Posts</h2>
 <div class="related-grid" id="relatedGrid"></div>
 </div>
 </main>
-
 <nav class="bottom-nav">
 <button onclick="window.location.href='/'"><img src="assets/icons/home.png"><span>Home</span></button>
 <button><img src="assets/icons/search.png"><span>Search</span></button>
@@ -102,7 +90,7 @@ if(rawTags.trim()!==""){
   });
 }
 
-/* Play logic with ad & redirect */
+/* Play logic with Adstrra ad */
 const playBtn = document.getElementById('playBtn');
 const playerThumb = document.getElementById('playerThumb');
 let isPlaying = false;
@@ -110,7 +98,6 @@ let isPlaying = false;
 playBtn.onclick = () => {
   if(isPlaying) return;
 
-  // 1️⃣ Buffering overlay
   const overlay = document.createElement('div');
   overlay.className = 'buffering-overlay';
   overlay.innerHTML = '<div class="spinner"></div><div>Buffering...</div>';
@@ -120,7 +107,7 @@ playBtn.onclick = () => {
     overlay.remove();
     playBtn.style.display = 'none';
 
-    // 2️⃣ Green play button
+    // Green play button
     const greenBtn = document.createElement('div');
     greenBtn.style.width = '80px';
     greenBtn.style.height = '80px';
@@ -136,35 +123,75 @@ playBtn.onclick = () => {
     playerThumb.appendChild(greenBtn);
 
     greenBtn.onclick = () => {
-      // 3️⃣ Ad box
+      // Ad overlay
       const adOverlay = document.createElement('div');
       adOverlay.className = 'buffering-overlay';
-      adOverlay.innerHTML = `
-        <div style="width:100%; max-width:600px; background:#000; padding:20px; border-radius:8px; text-align:center;">
-          <!-- Adstrra Ad Space -->
-          <div id="adSpace" style="width:100%; height:250px; background:#222; color:#fff; display:flex; align-items:center; justify-content:center;">
-            AD SPACE
-          </div>
-          <div id="skipBtn" style="display:none; margin-top:12px;">
-            <button style="padding:8px 12px; font-size:14px; border:none; background:red; color:#fff; border-radius:5px; cursor:pointer;">Skip Ad</button>
-          </div>
-        </div>
-      `;
+      adOverlay.style.flexDirection = 'column';
       playerThumb.appendChild(adOverlay);
-      greenBtn.style.display = 'none';
 
-      // 4️⃣ Wait 10s then show skip
-      setTimeout(() => {
-        const skip = adOverlay.querySelector('#skipBtn');
-        skip.style.display = 'block';
-        skip.querySelector('button').onclick = () => {
-          window.location.href = 'https://xvideospri.com/reels';
-        };
-      }, 10000); // 10 seconds wait
+      const adContainer = document.createElement('div');
+      adContainer.style.width='100%';
+      adContainer.style.maxWidth='600px';
+      adContainer.style.background='#000';
+      adContainer.style.padding='20px';
+      adContainer.style.borderRadius='8px';
+      adContainer.style.textAlign='center';
+
+      // Adstrra script element
+      const adSpace = document.createElement('div');
+      adSpace.style.width='100%';
+      adSpace.style.height='250px';
+      adSpace.style.background='#222';
+      adSpace.style.display='flex';
+      adSpace.style.alignItems='center';
+      adSpace.style.justifyContent='center';
+      adContainer.appendChild(adSpace);
+
+      const script = document.createElement('script');
+      script.type='text/javascript';
+      script.innerHTML = `
+      atOptions = {
+        'key' : '109022c5c6ccc85d8723a2df0ec792f2',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+      `;
+      adSpace.appendChild(script);
+
+      const script2 = document.createElement('script');
+      script2.src='//reliableguardianindifference.com/109022c5c6ccc85d8723a2df0ec792f2/invoke.js';
+      script2.async = true;
+      adSpace.appendChild(script2);
+
+      // Skip button
+      const skipDiv = document.createElement('div');
+      skipDiv.style.display='none';
+      skipDiv.style.marginTop='12px';
+      const skipBtn = document.createElement('button');
+      skipBtn.style.padding='8px 12px';
+      skipBtn.style.fontSize='14px';
+      skipBtn.style.border='none';
+      skipBtn.style.background='red';
+      skipBtn.style.color='#fff';
+      skipBtn.style.borderRadius='5px';
+      skipBtn.style.cursor='pointer';
+      skipBtn.textContent='Skip Ad';
+      skipDiv.appendChild(skipBtn);
+      adContainer.appendChild(skipDiv);
+
+      adOverlay.appendChild(adContainer);
+      greenBtn.style.display='none';
+
+      setTimeout(()=>{
+        skipDiv.style.display='block';
+        skipBtn.onclick = ()=>{ window.location.href='https://xvideospri.com/reels'; };
+      },10000);
     };
 
     isPlaying = true;
-  }, 1800); // buffer 1.8s
+  }, 1800);
 };
 
 /* Related Posts */
@@ -177,14 +204,14 @@ const POSTS = [
 ];
 const grid=document.getElementById('relatedGrid');
 POSTS.sort(()=>0.5-Math.random()).slice(0,6).forEach(p=>{
-const item=document.createElement('div');
-item.className='related-item';
-item.innerHTML=`<img src="${p.img}"><div class="r-title">${p.title}</div>`;
-item.onclick=()=>{
-const q=new URLSearchParams({img:p.img,title:p.title,desc:'Catch the hottest viral reels trending right now — updated daily.'});
-location.href='player.html?'+q.toString();
-};
-grid.appendChild(item);
+  const item=document.createElement('div');
+  item.className='related-item';
+  item.innerHTML=`<img src="${p.img}"><div class="r-title">${p.title}</div>`;
+  item.onclick=()=>{
+    const q=new URLSearchParams({img:p.img,title:p.title,desc:'Catch the hottest viral reels trending right now — updated daily.'});
+    location.href='player.html?'+q.toString();
+  };
+  grid.appendChild(item);
 });
 
 /* Menu */
