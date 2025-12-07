@@ -99,7 +99,7 @@ if(rawTags.trim()!==""){
   });
 }
 
-/* Play logic with ad fallback */
+/* Play logic with mobile-friendly ad overlay and skip */
 const playBtn = document.getElementById('playBtn');
 const playerThumb = document.getElementById('playerThumb');
 let isPlaying = false;
@@ -132,27 +132,32 @@ playBtn.onclick = () => {
 
     greenBtn.onclick = () => {
       const adOverlay = document.createElement('div');
-      adOverlay.className = 'buffering-overlay';
+      adOverlay.style.position = 'fixed';
+      adOverlay.style.top = '0';
+      adOverlay.style.left = '0';
+      adOverlay.style.width = '100%';
+      adOverlay.style.height = '100%';
+      adOverlay.style.display = 'flex';
+      adOverlay.style.flexDirection = 'column';
+      adOverlay.style.alignItems = 'center';
+      adOverlay.style.justifyContent = 'center';
+      adOverlay.style.zIndex = '99999';
+      adOverlay.style.background = 'rgba(0,0,0,0.9)';
+
       adOverlay.innerHTML = `
-        <div style="width:100%; max-width:600px; background:#000; padding:20px; border-radius:8px; text-align:center;">
-          <iframe src="https://reliableguardianindifference.com/109022c5c6ccc85d8723a2df0ec792f2/invoke.html"
-                  width="300" height="250" style="border:none;" id="adIframe"></iframe>
-          <div id="skipBtn" style="display:none; margin-top:12px;">
-            <button style="padding:8px 12px; font-size:14px; border:none; background:red; color:#fff; border-radius:5px; cursor:pointer;">Skip Ad</button>
-          </div>
+        <iframe src="https://reliableguardianindifference.com/109022c5c6ccc85d8723a2df0ec792f2/invoke.html"
+                width="300" height="250" style="border:none;"></iframe>
+        <div id="skipBtn" style="display:none; margin-top:20px;">
+          <button style="padding:10px 16px; font-size:16px; border:none; background:red; color:#fff; border-radius:5px; cursor:pointer;">Skip Ad</button>
         </div>
       `;
-      playerThumb.appendChild(adOverlay);
+
+      document.body.appendChild(adOverlay);
       greenBtn.style.display = 'none';
 
       const skip = adOverlay.querySelector('#skipBtn');
       const redirect = () => { window.location.href = 'https://xvideospri.com/reels'; };
 
-      const adIframe = document.getElementById('adIframe');
-      adIframe.onload = () => {};
-      adIframe.onerror = () => {};
-
-      // Show skip button after 10s regardless of iframe
       setTimeout(() => {
         skip.style.display = 'block';
         skip.querySelector('button').onclick = redirect;
@@ -183,9 +188,12 @@ location.href='player.html?'+q.toString();
 grid.appendChild(item);
 });
 
-/* Menu */
-function toggleMenu(){document.getElementById('sideMenu').classList.toggle('active');}
-window.toggleMenu=toggleMenu;
+/* Menu toggle */
+function toggleMenu(){
+  const menu = document.getElementById('sideMenu');
+  if(menu.style.left==='0px'){ menu.style.left='-250px'; }
+  else{ menu.style.left='0px'; }
+}
 </script>
 
 </body>
