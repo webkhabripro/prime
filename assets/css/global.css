@@ -17,5 +17,5 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   padding-top: var(--header-height);
-  padding-bottom: var(--bottom-nav-height);
+  padding-bottom: calc(var(--bottom-nav-height) + 40px);
 }
