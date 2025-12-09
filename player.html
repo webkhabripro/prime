@@ -30,6 +30,12 @@ nav.bottom-nav {width:100% !important; left:0 !important; transform:none !import
 .extra-paragraph {display:flex; flex-wrap:wrap; gap:10px; padding:10px; justify-content:flex-start;}
 .hashtag {color:red; font-weight:bold; font-size:16px; padding:5px 12px; background:white; border-radius:5px; box-shadow:2px 2px 5px rgba(0,0,0,0.5); display:inline-block; margin-bottom:5px; text-decoration:none; transform: perspective(100px) rotateX(5deg) rotateY(-5deg);}
 @media(max-width:768px){.hashtag{font-size:14px; padding:4px 8px;}}
+.ad-box {width:100%; text-align:center; background:#f9f9f9; margin:10px 0; border-radius:6px; padding:10px;}
+.bottom-nav {position:fixed; bottom:0; left:0; width:100%; display:flex; justify-content:space-around; background:#111; border-top:2px solid red; z-index:10;}
+.bottom-nav button {background:none; border:none; color:#fff; flex:1; text-align:center; padding:8px 0;}
+.bottom-nav button img {width:25px; height:25px;}
+.bottom-nav button span {display:block; font-size:12px;}
+main {padding-bottom:80px !important;}
 </style>
 
 </head>
@@ -64,33 +70,39 @@ nav.bottom-nav {width:100% !important; left:0 !important; transform:none !import
 
 <!-- In-page video ad -->
 <div style="margin:15px auto; max-width:426px;">
-  <div id="sp_8192724_node" style="max-width:426px;max-height:240px;display:none;"></div>
+  <div id="sp_8192724_node" style="max-width:426px; max-height:240px; margin:0 auto; display:block;"></div>
 
   <script charset="utf-8">
   if (typeof eaCtrl =="undefined"){ 
       var eaCtrlRecs=[];
       var eaCtrl = {add:function(ag){eaCtrlRecs.push(ag)}};
       var js = document.createElement('script');
-      js.setAttribute("src","//go.easrv.cl/loadeactrl.go?pid=154237&spaceid=8192724&ctrlid=799433");
+      js.src = "//go.easrv.cl/loadeactrl.go?pid=154237&spaceid=8192724&ctrlid=799433";
+      js.onload = function() {
+          eaCtrl.add({
+              "plugin":"inpage_video",
+              "sid":8192724,
+              "display":"sp_8192724_node",
+              "skip_btn":true,
+              "skip_after_sec":5,
+              "show_countdown":true,
+              "skip_position":"top_right",
+              "auto_hide":true,
+              "controls":false,
+              "muted":true,
+              "autoplay":true,
+              "loop":true,
+              "advertise":"Advertisement"
+          });
+      };
       document.head.appendChild(js);
   }
-
-  eaCtrl.add({
-    "plugin":"inpage_video",
-    "sid":8192724,
-    "display":"sp_8192724_node",
-    "skip_btn":true,
-    "skip_after_sec":5,
-    "show_countdown":true,
-    "skip_position":"top_right",
-    "auto_hide":true,
-    "controls":false,
-    "muted":true,
-    "autoplay":true,
-    "loop":true,
-    "advertise":"Advertisement"
-  });
   </script>
+</div>
+
+<!-- Custom ad box -->
+<div class="ad-box">
+<script type="text/javascript" src="https://your-ad-code.js"></script>
 </div>
 
 <div class="related-section">
