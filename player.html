@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -63,10 +62,42 @@ nav.bottom-nav {width:100% !important; left:0 !important; transform:none !import
 <div id="videoTags" class="extra-paragraph" style="margin-top:10px;"></div>
 </div>
 
+<!-- In-page video ad -->
+<div style="margin:15px auto; max-width:426px;">
+  <div id="sp_8192724_node" style="max-width:426px;max-height:240px;display:none;"></div>
+
+  <script charset="utf-8">
+  if (typeof eaCtrl =="undefined"){ 
+      var eaCtrlRecs=[];
+      var eaCtrl = {add:function(ag){eaCtrlRecs.push(ag)}};
+      var js = document.createElement('script');
+      js.setAttribute("src","//go.easrv.cl/loadeactrl.go?pid=154237&spaceid=8192724&ctrlid=799433");
+      document.head.appendChild(js);
+  }
+
+  eaCtrl.add({
+    "plugin":"inpage_video",
+    "sid":8192724,
+    "display":"sp_8192724_node",
+    "skip_btn":true,
+    "skip_after_sec":5,
+    "show_countdown":true,
+    "skip_position":"top_right",
+    "auto_hide":true,
+    "controls":false,
+    "muted":true,
+    "autoplay":true,
+    "loop":true,
+    "advertise":"Advertisement"
+  });
+  </script>
+</div>
+
 <div class="related-section">
 <h2 class="styled-h2" style="background:#000;color:#fff;">Related Posts</h2>
 <div class="related-grid" id="relatedGrid"></div>
 </div>
+
 </main>
 
 <nav class="bottom-nav">
@@ -178,14 +209,14 @@ const POSTS = [
 ];
 const grid=document.getElementById('relatedGrid');
 POSTS.sort(()=>0.5-Math.random()).slice(0,6).forEach(p=>{
-const item=document.createElement('div');
-item.className='related-item';
-item.innerHTML=`<img src="${p.img}"><div class="r-title">${p.title}</div>`;
-item.onclick=()=>{
-const q=new URLSearchParams({img:p.img,title:p.title,desc:'Catch the hottest viral reels trending right now — updated daily.'});
-location.href='player.html?'+q.toString();
-};
-grid.appendChild(item);
+  const item=document.createElement('div');
+  item.className='related-item';
+  item.innerHTML=`<img src="${p.img}"><div class="r-title">${p.title}</div>`;
+  item.onclick=()=>{
+    const q=new URLSearchParams({img:p.img,title:p.title,desc:'Catch the hottest viral reels trending right now — updated daily.'});
+    location.href='player.html?'+q.toString();
+  };
+  grid.appendChild(item);
 });
 
 /* Menu toggle */
