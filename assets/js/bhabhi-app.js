@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btns[1].onclick = () => alert("Search feature coming soon.");
     btns[2].onclick = () => alert("Bookmark feature coming soon.");
     btns[3].onclick = () => alert("Login feature coming soon.");
-    btns[4].onclick = () => (window.location.href = "/reels");
+    btns[4].onclick = () => (window.location.href = "https://swogex.com");
   }
 });
 
