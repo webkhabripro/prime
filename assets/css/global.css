@@ -137,3 +137,58 @@ text-align: center;
   font-size:14px;
   color:#ddd;
 }
+
+/* AGE VERIFICATION */
+#age-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.95);
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.age-box{
+  background:#111;
+  color:#fff;
+  max-width:320px;
+  width:90%;
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+}
+
+.age-box h2{
+  margin:0 0 10px;
+  color:#ff3d3d;
+}
+
+.age-box p{
+  font-size:14px;
+  color:#ddd;
+}
+
+.age-buttons{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.age-buttons button{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+}
+
+#age-yes{
+  background:#ff2f2f;
+  color:#fff;
+}
+
+#age-no{
+  background:#333;
+  color:#fff;
+}
