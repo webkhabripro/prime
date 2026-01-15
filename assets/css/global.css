@@ -56,3 +56,17 @@ font-size: 16px;
 margin: 10px 0;
 text-align: center;
 }
+
+#comment-section{
+  padding:15px;
+  background:#111;
+  color:#fff;
+}
+.comment{
+  border-bottom:1px solid #333;
+  padding:8px 0;
+}
+.comment p{
+  margin:4px 0;
+  font-size:14px;
+}
