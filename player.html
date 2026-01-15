@@ -241,5 +241,35 @@ function toggleMenu(){
 }
 </script>
 
+<!-- COMMENT SECTION START -->
+<div id="comment-section">
+  <h3>Comments</h3>
+
+  <input id="c-name" placeholder="Your name">
+  <textarea id="c-text" placeholder="Write comment"></textarea>
+
+  <button id="c-btn">Post</button>
+
+  <div id="comments-box"></div>
+</div>
+<!-- COMMENT SECTION END -->
+
+<script type="module">
+  import { loadComments, addComment } from "./assets/js/firebase-comments.js";
+
+  const postId = location.pathname.replace("/", "") || "home";
+
+  loadComments(postId);
+
+  document.getElementById("c-btn").onclick = () => {
+    addComment(
+      postId,
+      document.getElementById("c-name").value,
+      document.getElementById("c-text").value
+    );
+    document.getElementById("c-text").value = "";
+  };
+</script>
+
 </body>
 </html>
