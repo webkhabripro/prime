@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Player - demo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png">
+<title>Video Player</title>
+
+<link rel="icon" href="assets/img/logo.png">
 <link rel="stylesheet" href="assets/css/global.css">
 <link rel="stylesheet" href="assets/css/header.css">
 <link rel="stylesheet" href="assets/css/footer.css">
@@ -13,235 +14,72 @@
 <link rel="stylesheet" href="assets/css/menu.css">
 
 <style>
-.player-hero { max-width:900px; margin:18px auto; background:#111; border-radius:8px; padding:12px; color:#fff;}
-.player-thumb { position:relative; border-radius:6px; overflow:hidden; border:1px solid red;}
-.player-thumb img {width:100%; display:block;}
-.player-play-btn {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:80px; height:80px; background:rgba(255,255,255,0.12); border-radius:50%; display:grid; place-items:center; cursor:pointer; backdrop-filter:blur(3px);}
-.player-play-btn::after {content:""; width:0;height:0; border-left:26px solid white; border-top:16px solid transparent; border-bottom:16px solid transparent; transform:translateX(6px);}
-.buffering-overlay {position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); color:#fff; flex-direction:column; z-index:999;}
-.spinner {width:48px; height:48px; border-radius:50%; border:4px solid rgba(255,255,255,0.15); border-top-color:white; animation:spin 1s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.related-section {background:#000; padding:12px; margin-top:16px; border-radius:6px; color:#fff;}
-.related-grid {display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:12px;}
-.related-item {background:rgba(255,255,255,0.04); border-radius:6px; overflow:hidden; cursor:pointer; padding:0;}
-.related-item img {width:100%; height:120px; object-fit:cover; display:block;}
-.related-item .r-title {font-size:13px; color:#fff; padding:6px 6px 10px; text-align:center;}
-nav.bottom-nav {width:100% !important; left:0 !important; transform:none !important;}
-.extra-paragraph {display:flex; flex-wrap:wrap; gap:10px; padding:10px; justify-content:flex-start;}
-.hashtag {color:red; font-weight:bold; font-size:16px; padding:5px 12px; background:white; border-radius:5px; box-shadow:2px 2px 5px rgba(0,0,0,0.5); display:inline-block; margin-bottom:5px; text-decoration:none; transform: perspective(100px) rotateX(5deg) rotateY(-5deg);}
-@media(max-width:768px){.hashtag{font-size:14px; padding:4px 8px;}}
-.ad-box {width:100%; text-align:center; background:#f9f9f9; margin:10px 0; border-radius:6px; padding:10px;}
-.bottom-nav {position:fixed; bottom:0; left:0; width:100%; display:flex; justify-content:space-around; background:#111; border-top:2px solid red; z-index:10;}
-.bottom-nav button {background:none; border:none; color:#fff; flex:1; text-align:center; padding:8px 0;}
-.bottom-nav button img {width:25px; height:25px;}
-.bottom-nav button span {display:block; font-size:12px;}
-main {padding-bottom:80px !important;}
+.video-player{
+  width:100%;
+  max-width:900px;
+  margin:18px auto;
+  aspect-ratio:16 / 9;
+  background:#000;
+  border-radius:12px;
+  overflow:hidden;
+}
+.video-player iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+.extra-paragraph{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+.hashtag{
+  color:#ff3d3d;
+  font-weight:600;
+  text-decoration:none;
+}
+main{ padding-bottom:90px; }
 </style>
-
 </head>
+
 <body class="home-page">
 
+<!-- SIDE MENU -->
 <div id="sideMenu" class="side-menu">
   <a href="/">🏠 Home</a>
-  <a href="/hindi.html">hindi</a>
-  <a href="/indian.html">indian</a>
-  <a href="/eboney.html">eboney</a>
-  <a href="/erotic.html">erotic</a>
-  <a href="/village.html">village girl</a>
-  <a href="/mms.html">mms</a>
-  <a href="/schoolgirl.html">schoolgirl</a>
-  <a href="/xxx.html">xxx</a>
+  <a href="/hindi.html">Hindi</a>
+  <a href="/indian.html">Indian</a>
+  <a href="/eboney.html">Eboney</a>
+  <a href="/erotic.html">Erotic</a>
+  <a href="/village.html">Village Girl</a>
 </div>
 
+<!-- HEADER -->
 <header>
-<img src="assets/img/logo.png" class="logo" alt="Site Logo">
-<div class="menu-icon" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <img src="assets/img/logo.png" class="logo" alt="Logo">
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
 </header>
 
 <main>
-<div class="player-hero" id="playerHero">
-<h2 id="videoTitle" class="styled-h2">Loading...</h2>
-<div class="player-thumb" id="playerThumb">
-<img id="thumbImg" src="assets/img/deshi1.jpg">
-<div class="player-play-btn" id="playBtn"></div>
-</div>
-<p id="videoDesc" class="red-box" style="margin-top:12px;"></p>
 
-<div id="videoTags" class="extra-paragraph" style="margin-top:10px;"></div>
-</div>
+<!-- PLAYER -->
+<div class="player-hero">
+  <h2 id="videoTitle" class="styled-h2">Loading...</h2>
 
-<!-- In-page video ad -->
-<div style="margin:15px auto; max-width:426px;">
-  <div id="sp_8192724_node" style="max-width:426px; max-height:240px; margin:0 auto; display:block;"></div>
+  <div class="video-player">
+    <iframe id="fullPlayer"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
 
-  <script charset="utf-8">
-  if (typeof eaCtrl =="undefined"){ 
-      var eaCtrlRecs=[];
-      var eaCtrl = {add:function(ag){eaCtrlRecs.push(ag)}};
-      var js = document.createElement('script');
-      js.src = "//go.easrv.cl/loadeactrl.go?pid=154237&spaceid=8192724&ctrlid=799433";
-      js.onload = function() {
-          eaCtrl.add({
-              "plugin":"inpage_video",
-              "sid":8192724,
-              "display":"sp_8192724_node",
-              "skip_btn":true,
-              "skip_after_sec":5,
-              "show_countdown":true,
-              "skip_position":"top_right",
-              "auto_hide":true,
-              "controls":false,
-              "muted":true,
-              "autoplay":true,
-              "loop":true,
-              "advertise":"Advertisement"
-          });
-      };
-      document.head.appendChild(js);
-  }
-  </script>
+  <p id="videoDesc" class="red-box" style="margin-top:10px"></p>
+
+  <div id="videoTags" class="extra-paragraph"></div>
 </div>
 
-<!-- Custom ad box -->
-<div class="ad-box">
-<script type="text/javascript" src="https://your-ad-code.js"></script>
-</div>
-
-<div class="related-section">
-<h2 class="styled-h2" style="background:#000;color:#fff;">Related Posts</h2>
-<div class="related-grid" id="relatedGrid"></div>
-</div>
-
-</main>
-
-<nav class="bottom-nav">
-<button onclick="window.location.href='/'"><img src="assets/icons/home.png"><span>Home</span></button>
-<button><img src="assets/icons/search.png"><span>Search</span></button>
-<button><img src="assets/icons/saved.png"><span>Saved</span></button>
-<button><img src="assets/icons/login.png"><span>Login</span></button>
-<button onclick="window.location.href='/reels'"><img src="assets/icons/video.png"><span>Reels</span></button>
-</nav>
-
-<script>
-function qp(n,val){ const u=new URL(location.href); return u.searchParams.get(n)||val; }
-
-/* Load main content */
-document.getElementById('videoTitle').textContent = qp('title','Untitled');
-document.getElementById('thumbImg').src = qp('img','assets/img/deshi1.jpg');
-document.getElementById('videoDesc').textContent = qp('desc','Catch the hottest viral reels trending right now — updated daily.');
-
-/* Load TAGS */
-const rawTags = qp('tags','');
-const tagBox = document.getElementById('videoTags');
-if(rawTags.trim()!==""){
-  const tagArr = rawTags.split(",");
-  tagArr.forEach(t=>{
-    const a = document.createElement("a");
-    a.className="hashtag";
-    a.href="tag.html?tag="+t.trim();
-    a.textContent="#"+t.trim();
-    tagBox.appendChild(a);
-  });
-}
-
-/* Play logic with mobile-friendly ad overlay and skip */
-const playBtn = document.getElementById('playBtn');
-const playerThumb = document.getElementById('playerThumb');
-let isPlaying = false;
-
-playBtn.onclick = () => {
-  if(isPlaying) return;
-
-  const overlay = document.createElement('div');
-  overlay.className = 'buffering-overlay';
-  overlay.innerHTML = '<div class="spinner"></div><div>Buffering...</div>';
-  playerThumb.appendChild(overlay);
-
-  setTimeout(() => {
-    overlay.remove();
-    playBtn.style.display = 'none';
-
-    const greenBtn = document.createElement('div');
-    greenBtn.style.width = '80px';
-    greenBtn.style.height = '80px';
-    greenBtn.style.background = 'green';
-    greenBtn.style.borderRadius = '50%';
-    greenBtn.style.display = 'grid';
-    greenBtn.style.placeItems = 'center';
-    greenBtn.style.cursor = 'pointer';
-    greenBtn.style.margin = '50px auto';
-    greenBtn.textContent = '▶';
-    greenBtn.style.fontSize = '32px';
-    greenBtn.style.color = '#fff';
-    playerThumb.appendChild(greenBtn);
-
-    greenBtn.onclick = () => {
-      const adOverlay = document.createElement('div');
-      adOverlay.style.position = 'fixed';
-      adOverlay.style.top = '0';
-      adOverlay.style.left = '0';
-      adOverlay.style.width = '100%';
-      adOverlay.style.height = '100%';
-      adOverlay.style.display = 'flex';
-      adOverlay.style.flexDirection = 'column';
-      adOverlay.style.alignItems = 'center';
-      adOverlay.style.justifyContent = 'center';
-      adOverlay.style.zIndex = '99999';
-      adOverlay.style.background = 'rgba(0,0,0,0.9)';
-
-      adOverlay.innerHTML = `
-        <iframe src="https://reliableguardianindifference.com/109022c5c6ccc85d8723a2df0ec792f2/invoke.html"
-                width="300" height="250" style="border:none;"></iframe>
-        <div id="skipBtn" style="display:none; margin-top:20px;">
-          <button style="padding:10px 16px; font-size:16px; border:none; background:red; color:#fff; border-radius:5px; cursor:pointer;">Skip Ad</button>
-        </div>
-      `;
-
-      document.body.appendChild(adOverlay);
-      greenBtn.style.display = 'none';
-
-      const skip = adOverlay.querySelector('#skipBtn');
-      const redirect = () => { window.location.href = 'https://swogex.com'; };
-
-      setTimeout(() => {
-        skip.style.display = 'block';
-        skip.querySelector('button').onclick = redirect;
-      }, 10000);
-    };
-
-    isPlaying = true;
-  }, 1800);
-};
-
-/* Related Posts */
-const POSTS = [
-{img:'assets/img/deshi1.jpg', title:'Trending Reels Collection'},
-{img:'assets/img/deshi2.jpg', title:'Latest Entertainment Clips'},
-{img:'assets/img/deshi3.jpg', title:'Viral Indian Reels'},
-{img:'assets/img/deshi4.jpg', title:'Desi Girl Reels'},
-{img:'assets/img/deshi5.jpg', title:'Video HD'}
-];
-const grid=document.getElementById('relatedGrid');
-POSTS.sort(()=>0.5-Math.random()).slice(0,6).forEach(p=>{
-  const item=document.createElement('div');
-  item.className='related-item';
-  item.innerHTML=`<img src="${p.img}"><div class="r-title">${p.title}</div>`;
-  item.onclick=()=>{
-    const q=new URLSearchParams({img:p.img,title:p.title,desc:'Catch the hottest viral reels trending right now — updated daily.'});
-    location.href='player.html?'+q.toString();
-  };
-  grid.appendChild(item);
-});
-
-/* Menu toggle */
-function toggleMenu(){
-  const menu = document.getElementById('sideMenu');
-  if(menu.style.left==='0px'){ menu.style.left='-250px'; }
-  else{ menu.style.left='0px'; }
-}
-</script>
-
-<!-- COMMENT SECTION START -->
+<!-- COMMENTS -->
 <div id="comment-section">
 
   <div class="comment-header">Comments</div>
@@ -258,40 +96,87 @@ function toggleMenu(){
   </div>
 
   <div id="comments-box"></div>
-
 </div>
-<!-- COMMENT SECTION END -->
 
-<script type="module">
-  import { loadComments, addComment } from "./assets/js/firebase-comments.js";
+</main>
 
-  const postId = location.pathname.replace("/", "") || "home";
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button onclick="location.href='/'"><img src="assets/icons/home.png"><span>Home</span></button>
+  <button><img src="assets/icons/search.png"><span>Search</span></button>
+  <button><img src="assets/icons/saved.png"><span>Saved</span></button>
+  <button><img src="assets/icons/login.png"><span>Login</span></button>
+</nav>
 
-  loadComments(postId);
-
-  document.getElementById("c-btn").onclick = () => {
-    addComment(
-      postId,
-      document.getElementById("c-name").value,
-      document.getElementById("c-text").value
-    );
-    document.getElementById("c-text").value = "";
-  };
-</script>
-
-<!-- AGE VERIFICATION POPUP -->
+<!-- AGE VERIFICATION -->
 <div id="age-overlay">
   <div class="age-box">
     <h2>18+ Age Verification</h2>
-    <p>This website contains adult content.<br>
-    Are you 18 years or older?</p>
-
+    <p>This website contains adult content.<br>Are you 18 or older?</p>
     <div class="age-buttons">
-      <button id="age-yes">YES, I AM 18+</button>
+      <button id="age-yes">YES</button>
       <button id="age-no">NO</button>
     </div>
   </div>
 </div>
+
+<!-- SCRIPTS -->
+<script>
+function qp(name, def=""){
+  const p = new URLSearchParams(location.search);
+  return p.get(name) || def;
+}
+
+/* Load video */
+const video = qp("video");
+if(video){
+  document.getElementById("fullPlayer").src =
+    decodeURIComponent(video) + "?autoplay=1";
+}
+
+/* Title & description */
+document.getElementById("videoTitle").textContent =
+  qp("title","Video Player");
+
+document.getElementById("videoDesc").textContent =
+  qp("desc","Enjoy the full video below");
+
+/* Tags */
+const rawTags = qp("tags","");
+if(rawTags){
+  rawTags.split(",").forEach(t=>{
+    const a = document.createElement("a");
+    a.className = "hashtag";
+    a.href = "tag.html?tag=" + t.trim();
+    a.textContent = "#" + t.trim();
+    document.getElementById("videoTags").appendChild(a);
+  });
+}
+
+/* Menu */
+function toggleMenu(){
+  const m = document.getElementById("sideMenu");
+  m.style.left = (m.style.left === "0px") ? "-250px" : "0px";
+}
+</script>
+
+<!-- FIREBASE COMMENTS -->
+<script type="module">
+import { loadComments, addComment } from "./assets/js/firebase-comments.js";
+
+const postId = location.pathname + location.search;
+
+loadComments(postId);
+
+document.getElementById("c-btn").onclick = () => {
+  addComment(
+    postId,
+    document.getElementById("c-name").value,
+    document.getElementById("c-text").value
+  );
+  document.getElementById("c-text").value = "";
+};
+</script>
 
 <script src="./assets/js/age-check.js"></script>
 
