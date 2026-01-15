@@ -1,32 +1,91 @@
-.home-page .home-posts {
-  display: grid;
-  gap: 20px;
-  padding: 20px;
+.home-page .home-posts{
+  display:grid;
+  gap:20px;
+  padding:16px;
 }
-.home-page .post {
-  background: rgb(57, 57, 57);
-  border-radius: 10px;
-  padding: 16px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgb(249, 247, 247);
-}
-.home-page .post img {
-  width: 100%;
-  border-radius: 8px;
-  margin: 12px 0;
-}
-.home-page .btn-group {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-.home-page .btn {
-  background: var(--accent);
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-}
-.home-page .btn:hover { background: #e02244; }
 
+/* POST CARD */
+.home-page .post{
+  background:#1a1a1a;
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* TITLE */
+.home-page .post h2{
+  font-size:18px;
+  margin:0 0 8px;
+  color:#fff;
+}
+
+/* DESCRIPTION */
+.home-page .red-box{
+  font-size:14px;
+  color:#ddd;
+  margin-bottom:10px;
+}
+
+/* VIDEO PREVIEW (16:9) */
+.home-page .video-preview{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  background:#000;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+/* IFRAME PREVIEW */
+.home-page .video-preview iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  pointer-events:none; /* preview only */
+}
+
+/* PLAY ICON OVERLAY */
+.home-page .video-preview .play-btn{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+
+.home-page .video-preview .play-btn::after{
+  content:"▶";
+  font-size:48px;
+  color:#fff;
+  background:rgba(0,0,0,0.4);
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* TAGS */
+.home-page .post-tags{
+  margin-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  justify-content:center;
+}
+
+.home-page .hashtag{
+  font-size:12px;
+  padding:4px 8px;
+  background:#2b2b2b;
+  color:#ff4d4d;
+  border-radius:20px;
+  text-decoration:none;
+}
+
+/* OLD IMAGE / BUTTON RULES REMOVED */
+/* .post img ❌ */
+/* .btn-group ❌ */
+/* .btn ❌ */
