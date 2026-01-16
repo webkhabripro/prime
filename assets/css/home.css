@@ -107,3 +107,39 @@
   .home-page .post h2{font-size:16px;}
   .home-page .red-box{font-size:13px;}
 }
+
+/* FORCE CENTER PLAY BUTTON */
+.home-page .video-preview{
+  position:relative;
+}
+
+.home-page .video-preview .play-btn{
+  position:absolute !important;
+  inset:0 !important;
+  top:0 !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  z-index:5;
+  pointer-events:none;
+}
+
+/* PLAY ICON */
+.home-page .video-preview .play-btn::after{
+  content:"▶";
+  font-size:46px;
+  color:#fff;
+  background:rgba(0,0,0,0.45);
+  width:76px;
+  height:76px;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
