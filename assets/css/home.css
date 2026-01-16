@@ -89,18 +89,6 @@
   pointer-events:none;
 }
 
-.home-page .video-preview .play-btn::after{
-  content:"▶";
-  width:100px;
-  height:100px;
-  font-size:44px;
-  color:#fff;
-  background:rgba(0,0,0,0.45);
-  border-radius:50%;
-  display:flex;
-  align-items:right;
-  justify-content:right;
-}
 
 /* =========================
    TAGS
